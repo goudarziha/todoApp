@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="todoapp">
+<head>
+    <meta charset="UTF-8">
+	<title>Angular Todo App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.9.1/angularfire.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="TodoCtrl">
+    <div class="container">
+        <h4 class="list-group-item title">Angular Todo App</h4>
+        <div class="list-group-item" ng-repeat="todo in todos">
+            <input type="checkbox" ng-model="todo.done"/>
+            <input class='todo' type="text" ng-model="todo.text"/>
+            <a href="" ng-click="move($index, 'up')"><span class="glyphicon glyphicon-arrow-up"></span></a>
+            <a href="" ng-click="move($index, 'down')"><span class="glyphicon glyphicon-arrow-down"></span></a>
+            <a href="" ng-click="removeTodo($index)"><span class="glyphicon glyphicon-remove-circle"></span></a>
+        </div>
+        
+        <div class="list-group-item" ng-show='todoText'>
+            <input type="checkbox" disabled='true'>
+            <input type='text' disabled='true' class="todo" placeholder="{{todoText}}">
+        </div>
+        
+        <form class="list-group-item" ng-submit="addTodo()">
+            <input type="text" ng-model="todoText"/>
+            <input type="submit" />
+        </form>
+    </div>
+</body>
+</html>
